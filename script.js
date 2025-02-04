@@ -45,13 +45,10 @@ function updateDisplay(element) {
         display.textContent += e.target.textContent;
         if (e.target.className === 'num-btn' && operator === undefined) {
             numberOne += e.target.textContent;
-            console.log(`numberOne: ${numberOne}`);
-        } else if (e.target.className === 'operator-btn') {
+        } else if (e.target.className === 'operator-btn' && operator === undefined) {
             operator = e.target.textContent;
-            console.log(`operator: ${operator}`);
         } else if (e.target.className === 'num-btn' && operator !== undefined) {
             numberTwo += e.target.textContent;
-            console.log(`numberTwo: ${numberTwo}`);
         }
     })
 }
@@ -64,5 +61,20 @@ clearBtn.addEventListener("click", () => {
 });
 
 equalsBtn.addEventListener("click", () => {
-    display.textContent = operate(Number(numberOne), operator, Number(numberTwo));
+    if (validExpression() === false) {
+        display.textContent = 'Error';
+    } else {
+        display.textContent = operate(Number(numberOne), operator, Number(numberTwo));
+        numberOne = display.textContent;
+        operator = undefined;
+        numberTwo = '';
+    }
 });
+
+function validExpression() {
+    if (numberOne === '' || numberTwo === '' || operator === undefined) {
+        return false;
+    } else {
+        return true;
+    }
+}
