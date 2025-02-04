@@ -50,7 +50,7 @@ body {
     justify-content: space-around;
 }
 
-.btn {
+.operator-btn, .num-btn, .equals-btn, .clear-btn {
     color: white;
     background-color: black;
     padding: 20px;
@@ -58,6 +58,6 @@ body {
     border-radius: 15px;
 }
 
-.btn:hover {
+.operator-btn:hover, .num-btn:hover, .equals-btn:hover, .clear-btn:hover {
     background-color: gray;
 }
