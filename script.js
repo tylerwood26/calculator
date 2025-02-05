@@ -11,6 +11,9 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if (num1 == 0 || num2 == 0) {
+        return "You're a Nerd";
+    }
     return num1 / num2;
 }
 
@@ -27,6 +30,7 @@ function operate(num1, operator, num2) {
         case '*':
             return multiply(num1, num2);
         case '/':
+
             return divide(num1, num2);
     }
 }
@@ -64,7 +68,8 @@ equalsBtn.addEventListener("click", () => {
     if (validExpression() === false) {
         display.textContent = 'Error';
     } else {
-        display.textContent = operate(Number(numberOne), operator, Number(numberTwo));
+        sum = operate(Number(numberOne), operator, Number(numberTwo));
+        display.textContent = roundNumber(sum);
         numberOne = display.textContent;
         operator = undefined;
         numberTwo = '';
@@ -76,5 +81,13 @@ function validExpression() {
         return false;
     } else {
         return true;
+    }
+}
+
+function roundNumber(sum) {
+    if (sum % 1 != 0) {
+        return Math.round(sum * 100) / 100;
+    } else {
+        return sum;
     }
 }
